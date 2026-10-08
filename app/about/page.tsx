@@ -1,9 +1,14 @@
-import type { Metadata } from "next";
+import { pageMetadata } from "@/lib/seo";
 import Link from "next/link";
 import ImageSlot from "@/components/ImageSlot";
 import { css } from "@/lib/css";
 
-export const metadata: Metadata = { title: "About Us" };
+export const metadata = pageMetadata({
+  title: "About Us",
+  description:
+    "Learn about the City Internal Audit Services Department's mandate, organizational structure, divisions, leadership, and Internal Audit Charter under the City Government of Butuan.",
+  path: "/about",
+});
 
 type Person = { name: string; role: string; initials: string };
 type Section = { name: string; members: Person[] };

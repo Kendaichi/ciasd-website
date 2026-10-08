@@ -1,6 +1,13 @@
 import Link from "next/link";
 import ImageSlot from "@/components/ImageSlot";
 import { css } from "@/lib/css";
+import { pageMetadata } from "@/lib/seo";
+
+export const metadata = pageMetadata({
+  description:
+    "The City Internal Audit Services Department provides independent, objective audit, review, advisory, and training services to every office of the City Government of Butuan.",
+  path: "/",
+});
 
 const NEWS = [
   {

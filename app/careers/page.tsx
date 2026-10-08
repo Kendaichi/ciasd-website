@@ -1,9 +1,14 @@
-import type { Metadata } from "next";
+import { pageMetadata } from "@/lib/seo";
 import Link from "next/link";
 import ImageSlot from "@/components/ImageSlot";
 import { css } from "@/lib/css";
 
-export const metadata: Metadata = { title: "Careers" };
+export const metadata = pageMetadata({
+  title: "Careers",
+  description:
+    "Current job vacancies at the City Internal Audit Services Department of Butuan City, with qualifications, salary grades, application deadlines, and how to apply.",
+  path: "/careers",
+});
 
 const qs = (e: string, t: string, x: string, el: string) => [
   { k: "Education", v: e },

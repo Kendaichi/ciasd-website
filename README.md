@@ -25,6 +25,27 @@ npm run build
 npm run start
 ```
 
+## SEO
+
+SEO is centralised in `lib/site.ts` (single source of truth) and `lib/seo.ts`
+(per-page metadata helper). Every route exports page-specific metadata via
+`pageMetadata({ title, description, path })`, which generates the canonical URL,
+Open Graph, and Twitter tags.
+
+- **Canonical / production URL** is read from the `NEXT_PUBLIC_SITE_URL`
+  environment variable, falling back to `https://ciasd.butuan.gov.ph`. **Set the
+  real domain in the Vercel dashboard** (Project → Settings → Environment
+  Variables), e.g. `NEXT_PUBLIC_SITE_URL=https://ciasd.butuan.gov.ph`, with no
+  trailing slash. Everything else (sitemap, robots, canonical, OG) follows from
+  it automatically.
+- Generated routes: `/robots.txt` (`app/robots.ts`), `/sitemap.xml`
+  (`app/sitemap.ts`), `/manifest.webmanifest` (`app/manifest.ts`).
+- `/opengraph-image` and `/twitter-image` generate a branded 1200×630 social
+  card at build time via `next/og` (`app/opengraph-image.tsx`).
+- Schema.org JSON-LD (`GovernmentOrganization` + `WebSite`) is rendered site-wide
+  by `components/StructuredData.tsx`.
+- When adding a new route, add it to the list in `app/sitemap.ts`.
+
 ## Structure
 
 ```

@@ -1,9 +1,14 @@
-import type { Metadata } from "next";
+import { pageMetadata } from "@/lib/seo";
 import Link from "next/link";
 import OpenOnHash from "@/components/OpenOnHash";
 import { css } from "@/lib/css";
 
-export const metadata: Metadata = { title: "Services" };
+export const metadata = pageMetadata({
+  title: "Services",
+  description:
+    "The CIASD Citizen's Charter (2024, 3rd Edition): audit, review, advisory, and training services provided free of charge to offices of the City Government of Butuan.",
+  path: "/services",
+});
 
 type Req = { what: string; where: string };
 type Action = { action: string; time: string; person: string };

@@ -72,7 +72,7 @@ export default function Footer() {
               City Internal Audit Services Department
             </span>
             <span style={css("color:#D6E6F4;")}>
-              2nd Floor, Butuan City Hall, J.P. Rosales Avenue, Doongan, Butuan
+              3rd Floor, Butuan City Hall, J.P. Rosales Avenue, Doongan, Butuan
               City 8600, Agusan del Norte
             </span>
             <span style={css("color:#D6E6F4;")}>

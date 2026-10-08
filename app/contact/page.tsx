@@ -1,15 +1,20 @@
-import type { Metadata } from "next";
+import { pageMetadata } from "@/lib/seo";
 import Link from "next/link";
 import ImageSlot from "@/components/ImageSlot";
 import ReportForm from "@/components/ReportForm";
 import { css } from "@/lib/css";
 
-export const metadata: Metadata = { title: "Contact Us" };
+export const metadata = pageMetadata({
+  title: "Contact Us",
+  description:
+    "Visit, call, or email the City Internal Audit Services Department at Butuan City Hall, or submit a concern about a city office through our online form.",
+  path: "/contact",
+});
 
 const details = [
   {
     k: "Address",
-    v: "2nd Floor, Butuan City Hall\nJ.P. Rosales Avenue, Doongan\nButuan City 8600, Agusan del Norte",
+    v: "3rd Floor, Butuan City Hall\nJ.P. Rosales Avenue, Doongan\nButuan City 8600, Agusan del Norte",
     icon: "M12 21s-7-6.2-7-11.5A7 7 0 0 1 19 9.5C19 14.8 12 21 12 21zM12 12a2.5 2.5 0 1 0 0-5 2.5 2.5 0 0 0 0 5z",
   },
   {

@@ -164,7 +164,7 @@ export default function Header() {
           </Link>
           {!narrow ? (
             <Link
-              href="/contact#report"
+              href="/contact"
               className="hvr-report"
               style={css(
                 "display:inline-flex;align-items:center;gap:8px;background:#3F7412;color:#fff;font-weight:700;font-size:15px;padding:11px 18px;border-radius:4px;text-decoration:none;min-height:44px;",
@@ -181,10 +181,10 @@ export default function Header() {
                 strokeLinejoin="round"
                 aria-hidden="true"
               >
-                <path d="M4 22V4" />
-                <path d="M4 4h12l-2 4 2 4H4" />
+                <path d="M3 6h18v12H3z" />
+                <path d="M3 7l9 6 9-6" />
               </svg>
-              Report a Concern
+              Contact Us
             </Link>
           ) : null}
         </div>
@@ -253,7 +253,7 @@ export default function Header() {
                   </ul>
                   <div style={css("padding:4px 0 16px;")}>
                     <Link
-                      href="/contact#report"
+                      href="/contact"
                       onClick={() => setOpen(false)}
                       className="hvr-report"
                       style={css(
@@ -271,10 +271,10 @@ export default function Header() {
                         strokeLinejoin="round"
                         aria-hidden="true"
                       >
-                        <path d="M4 22V4" />
-                        <path d="M4 4h12l-2 4 2 4H4" />
+                        <path d="M3 6h18v12H3z" />
+                        <path d="M3 7l9 6 9-6" />
                       </svg>
-                      Report a Concern
+                      Contact Us
                     </Link>
                   </div>
                 </>

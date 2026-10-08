@@ -1,10 +1,15 @@
-import type { Metadata } from "next";
+import { pageMetadata } from "@/lib/seo";
 import Link from "next/link";
 import ImageSlot from "@/components/ImageSlot";
 import NewsFeed from "@/components/NewsFeed";
 import { css } from "@/lib/css";
 
-export const metadata: Metadata = { title: "News & Updates" };
+export const metadata = pageMetadata({
+  title: "News & Updates",
+  description:
+    "News, announcements, activities, and accomplishment reports from the City Internal Audit Services Department of Butuan City.",
+  path: "/news",
+});
 
 const gallery = [
   "Internal control workshop, City Hall Session Hall",

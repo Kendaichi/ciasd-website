@@ -1,8 +1,13 @@
-import type { Metadata } from "next";
+import { pageMetadata } from "@/lib/seo";
 import Link from "next/link";
 import { css } from "@/lib/css";
 
-export const metadata: Metadata = { title: "For City Offices" };
+export const metadata = pageMetadata({
+  title: "For City Offices",
+  description:
+    "What to expect during an internal audit: the step-by-step process, how to prepare, your rights as an auditee, and downloadable forms for City Government of Butuan offices.",
+  path: "/city-offices",
+});
 
 const steps = (
   [
