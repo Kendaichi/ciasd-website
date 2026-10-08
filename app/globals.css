@@ -1,0 +1,166 @@
+/* ============================================================
+   Base styles — ported verbatim from the shared <style> block
+   that every Design Canvas page carried in its <helmet>.
+   ============================================================ */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  background: #fff;
+  color: #1a2b3c;
+  font-family: "Public Sans", system-ui, sans-serif;
+  font-size: 17px;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+}
+
+h1,
+h2,
+h3,
+h4 {
+  font-family: Merriweather, Georgia, serif;
+  color: #0b4a7d;
+  margin: 0;
+  text-wrap: balance;
+}
+
+p {
+  margin: 0;
+  text-wrap: pretty;
+}
+
+a {
+  color: #1878b0;
+  text-underline-offset: 3px;
+}
+
+a:hover {
+  color: #0b4a7d;
+}
+
+summary::-webkit-details-marker {
+  display: none;
+}
+
+:focus-visible {
+  outline: 3px solid #ffdd00;
+  outline-offset: 2px;
+  box-shadow: 0 0 0 6px #1a2b3c;
+}
+
+/* ============================================================
+   Interaction utilities.
+
+   The original templates used `style-hover` / `style-focus`
+   attributes that the DC runtime compiled into :hover / :focus
+   rules. Because the ported markup keeps its base look in inline
+   styles (which win over classes), these hover/focus overrides
+   use !important so they can take effect.
+   ============================================================ */
+
+/* Skip link reveals itself on focus */
+.skip-link:focus {
+  left: 8px !important;
+}
+
+/* Header: "Report a Concern" green button */
+.hvr-report:hover {
+  background: #2f5a0b !important;
+  color: #fff !important;
+}
+
+/* Header: inactive top-nav links */
+.hvr-navlink:hover {
+  background: #083a63 !important;
+  color: #fff !important;
+  border-bottom-color: rgba(255, 255, 255, 0.35) !important;
+}
+
+/* Footer links: thicker underline on hover (stay white) */
+.hvr-footlink:hover {
+  color: #fff !important;
+  text-decoration-thickness: 2px !important;
+}
+
+/* Generic card / tile that lifts on hover */
+.hvr-card:hover {
+  border-color: #0b4a7d !important;
+  box-shadow: 0 10px 28px -14px rgba(11, 74, 125, 0.35) !important;
+  color: #1a2b3c !important;
+}
+
+/* Services index tiles / news filter chips: tint on hover */
+.hvr-tile:hover {
+  border-color: #0b4a7d !important;
+  background: #f6fafe !important;
+  color: #1a2b3c !important;
+}
+
+/* Solid navy primary button */
+.hvr-btn-primary:hover {
+  background: #083a63 !important;
+  color: #fff !important;
+}
+
+/* Light secondary button (navy text on white) */
+.hvr-btn-secondary:hover {
+  background: #f4f9fe !important;
+  color: #0b4a7d !important;
+}
+
+/* Green submit button */
+.hvr-btn-submit:hover {
+  background: #2f5a0b !important;
+}
+
+/* Outline button that inverts to solid navy on hover */
+.hvr-invert:hover {
+  background: #0b4a7d !important;
+  color: #fff !important;
+}
+
+/* White button that tints light-blue on hover (navy text) */
+.hvr-btn-light:hover {
+  background: #e3f0fb !important;
+  color: #0b4a7d !important;
+}
+
+/* Rounded pill filter (outlined) */
+.hvr-pill:hover {
+  border-color: #0b4a7d !important;
+  color: #0b4a7d !important;
+  background: #f6fafe !important;
+}
+
+/* Table-of-contents side links */
+.hvr-toc:hover {
+  border-left-color: #7dc12b !important;
+  color: #0b4a7d !important;
+  text-decoration: underline !important;
+}
+
+/* Card-title / news links: underline on hover */
+.hvr-underline:hover {
+  text-decoration: underline !important;
+  color: #0b4a7d !important;
+}
+
+/* Form fields: focus ring color */
+.inp:focus {
+  border-color: #0b4a7d !important;
+}
+
+/* About page: hide the "On this page" table-of-contents sidebar on mobile */
+@media (max-width: 959px) {
+  .toc-aside {
+    display: none !important;
+  }
+}
