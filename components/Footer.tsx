@@ -16,40 +16,6 @@ const GOV_LINKS: ReadonlyArray<readonly [string, string]> = [
   ["Office of the Ombudsman", "https://www.ombudsman.gov.ph"],
 ];
 
-/** Compact stand-in for the Republic of the Philippines seal (assets/ph-seal-160.png). */
-function PhilippineSeal() {
-  const rays = Array.from({ length: 8 }, (_, i) => i * 45);
-  const stars: ReadonlyArray<readonly [number, number]> = [
-    [28, 7.5],
-    [11.5, 36],
-    [44.5, 36],
-  ];
-  const starPath =
-    "M0,-3.2 L0.95,-0.95 L3.2,0 L0.95,0.95 L0,3.2 L-0.95,0.95 L-3.2,0 L-0.95,-0.95 Z";
-  return (
-    <svg
-      width={56}
-      height={56}
-      viewBox="0 0 56 56"
-      role="img"
-      aria-label="Seal of the Republic of the Philippines"
-      style={{ display: "block", background: "#fff", borderRadius: "50%", flexShrink: 0 }}
-    >
-      <circle cx="28" cy="28" r="27" fill="#0B4A7D" />
-      <circle cx="28" cy="28" r="23.5" fill="none" stroke="#FFDD00" strokeWidth="1.3" />
-      <g fill="#FFDD00">
-        {rays.map((a) => (
-          <polygon key={a} points="28,14 26,28 30,28" transform={`rotate(${a} 28 28)`} />
-        ))}
-        <circle cx="28" cy="28" r="4.6" />
-        {stars.map(([x, y]) => (
-          <path key={`${x}-${y}`} d={starPath} transform={`translate(${x} ${y})`} />
-        ))}
-      </g>
-    </svg>
-  );
-}
-
 export default function Footer() {
   return (
     <footer
@@ -140,7 +106,14 @@ export default function Footer() {
           )}
         >
           <div style={css("display:flex;gap:14px;align-items:center;max-width:520px;")}>
-            <PhilippineSeal />
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img
+              src="/assets/ph-seal.webp"
+              alt="Seal of the Republic of the Philippines"
+              width={56}
+              height={56}
+              style={css("display:block;width:56px;height:56px;flex-shrink:0;")}
+            />
             <div style={css("display:flex;flex-direction:column;")}>
               <span
                 style={css(

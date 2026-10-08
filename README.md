@@ -35,9 +35,10 @@ Open Graph, and Twitter tags.
 - **Canonical / production URL** is read from the `NEXT_PUBLIC_SITE_URL`
   environment variable, falling back to `https://ciasd.butuan.gov.ph`. **Set the
   real domain in the Vercel dashboard** (Project → Settings → Environment
-  Variables), e.g. `NEXT_PUBLIC_SITE_URL=https://ciasd.butuan.gov.ph`, with no
+  Variables), e.g. `NEXT_PUBLIC_SITE_URL=https://ciasd.daggerbuilds.com`, with no
   trailing slash. Everything else (sitemap, robots, canonical, OG) follows from
-  it automatically.
+  it automatically. **This value must match the deployed domain, otherwise the
+  social preview image (og:image) points at the wrong host and renders blank.**
 - Generated routes: `/robots.txt` (`app/robots.ts`), `/sitemap.xml`
   (`app/sitemap.ts`), `/manifest.webmanifest` (`app/manifest.ts`).
 - `/opengraph-image` and `/twitter-image` generate a branded 1200×630 social
@@ -80,10 +81,9 @@ public/assets/        Brand images (IAS logo, Butuan city seal)
 - `style-hover` / `style-focus` behavior from the originals is reproduced with
   utility classes in `globals.css`.
 - The three brand images (`ias-logo-192`, `ias-logo-512`, `city-seal-192`) were
-  imported from the design project. The small Republic of the Philippines footer
-  seal (`ph-seal-160.png`) is rendered as a self-contained SVG substitute — drop
-  the real PNG into `public/assets/ph-seal-160.png` and swap it into
-  `components/Footer.tsx` if you prefer the original artwork.
+  imported from the design project. The Republic of the Philippines footer seal
+  uses the official artwork at `public/assets/ph-seal.webp` (swapped into
+  `components/Footer.tsx`, replacing the earlier inline-SVG stand-in).
 - Photo areas use `ImageSlot` placeholders (no real photography was in the design).
 - Form submission, file upload, and "Download" links are front-end only, as in the
   source design — wire them to real endpoints when available.

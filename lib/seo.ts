@@ -25,7 +25,11 @@ export function pageMetadata({
     : siteConfig.name;
 
   return {
-    title,
+    // When a page passes a bare title string, the layout's title template adds
+    // the site-name suffix. The home page passes no title, so emit the
+    // department name as an absolute title (otherwise there is no <title> tag
+    // and browsers fall back to showing the URL in the tab).
+    title: title ?? { absolute: siteConfig.name },
     description,
     alternates: { canonical },
     openGraph: {

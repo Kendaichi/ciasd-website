@@ -127,7 +127,7 @@ export default function Header() {
             <span style={css("display:flex;gap:8px;flex-shrink:0;")}>
               {/* eslint-disable-next-line @next/next/no-img-element */}
               <img
-                src="/assets/city-seal-192.png"
+                src="/assets/city-seal-192.webp"
                 alt="Official Seal of the City of Butuan"
                 width={60}
                 height={60}
@@ -135,7 +135,7 @@ export default function Header() {
               />
               {/* eslint-disable-next-line @next/next/no-img-element */}
               <img
-                src="/assets/ias-logo-192.png"
+                src="/assets/ias-logo-192.webp"
                 alt="City Internal Audit Services Department logo"
                 width={60}
                 height={60}

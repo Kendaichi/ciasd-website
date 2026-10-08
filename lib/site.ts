@@ -9,7 +9,8 @@
  *   NEXT_PUBLIC_SITE_URL=https://ciasd.butuan.gov.ph
  */
 
-const rawUrl = process.env.NEXT_PUBLIC_SITE_URL ?? "https://ciasd.butuan.gov.ph";
+const rawUrl =
+  process.env.NEXT_PUBLIC_SITE_URL ?? "https://ciasd.butuan.gov.ph";
 
 /** Absolute site origin, normalised with no trailing slash. */
 export const SITE_URL = rawUrl.replace(/\/+$/, "");

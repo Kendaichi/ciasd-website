@@ -85,7 +85,7 @@ export default function HomePage() {
           >
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img
-              src="/assets/ias-logo-192.png"
+              src="/assets/ias-logo-192.webp"
               alt=""
               width={96}
               height={96}
