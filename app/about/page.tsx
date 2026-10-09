@@ -30,7 +30,11 @@ function ini(n: string): string {
     .filter((_c, i, a) => i === 0 || i === a.length - 1)
     .join("");
 }
-const p = (name: string, role: string): Person => ({ name, role, initials: ini(name) });
+const p = (name: string, role: string): Person => ({
+  name,
+  role,
+  initials: ini(name),
+});
 const sec = (name: string, names: string[]): Section => ({
   name,
   members: names.map((n) => p(n, "Internal Auditor")),
@@ -270,22 +274,24 @@ const pledge = [
 
 const avatar = (size: number, bg: string, color: string) =>
   css(
-    `width:${size}px;height:${size}px;flex-shrink:0;border-radius:50%;background:${bg};color:${color};font-weight:700;display:flex;align-items:center;justify-content:center;letter-spacing:.02em;`,
+    `width:${size}px;height:${size}px;flex-shrink:0;border-radius:50%;background:${bg};color:${color};font-weight:700;display:flex;align-items:center;justify-content:center;letter-spacing:.02em;`
   );
 
 export default function AboutPage() {
   return (
     <main id="main">
-      <section style={css("background:#E3F0FB;border-bottom:1px solid #CFE0F0;")}>
+      <section
+        style={css("background:#E3F0FB;border-bottom:1px solid #CFE0F0;")}
+      >
         <div
           style={css(
-            "max-width:1200px;margin:0 auto;padding:clamp(28px,5vw,44px) clamp(16px,4vw,32px) clamp(36px,5vw,56px);display:flex;flex-direction:column;gap:14px;",
+            "max-width:1200px;margin:0 auto;padding:clamp(28px,5vw,44px) clamp(16px,4vw,32px) clamp(36px,5vw,56px);display:flex;flex-direction:column;gap:14px;"
           )}
         >
           <nav aria-label="Breadcrumb">
             <ol
               style={css(
-                "list-style:none;margin:0;padding:0;display:flex;flex-wrap:wrap;gap:8px;font-size:14px;",
+                "list-style:none;margin:0;padding:0;display:flex;flex-wrap:wrap;gap:8px;font-size:14px;"
               )}
             >
               <li>
@@ -301,7 +307,11 @@ export default function AboutPage() {
               </li>
             </ol>
           </nav>
-          <h1 style={css("font-size:clamp(32px,4.6vw,46px);line-height:1.15;font-weight:900;")}>
+          <h1
+            style={css(
+              "font-size:clamp(32px,4.6vw,46px);line-height:1.15;font-weight:900;"
+            )}
+          >
             About Us
           </h1>
           <p style={css("font-size:clamp(17px,1.6vw,20px);max-width:740px;")}>
@@ -314,24 +324,27 @@ export default function AboutPage() {
 
       <div
         style={css(
-          "max-width:1200px;margin:0 auto;padding:clamp(36px,5vw,64px) clamp(16px,4vw,32px) clamp(56px,8vw,96px);display:flex;flex-wrap:wrap;gap:48px;align-items:flex-start;",
+          "max-width:1200px;margin:0 auto;padding:clamp(36px,5vw,64px) clamp(16px,4vw,32px) clamp(56px,8vw,96px);display:flex;flex-wrap:wrap;gap:48px;align-items:flex-start;"
         )}
       >
-        <aside className="toc-aside" style={css("flex:1 1 220px;position:sticky;top:20px;")}>
+        <aside
+          className="toc-aside"
+          style={css("flex:1 1 220px;position:sticky;top:20px;")}
+        >
           <nav
             aria-label="On this page"
             style={css("display:flex;flex-direction:column;gap:10px;")}
           >
             <span
               style={css(
-                "font-size:13px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:#4A5D70;",
+                "font-size:13px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:#4A5D70;"
               )}
             >
               On this page
             </span>
             <ul
               style={css(
-                "list-style:none;margin:0;padding:0;display:flex;flex-direction:column;border-left:2px solid #D5E1EC;",
+                "list-style:none;margin:0;padding:0;display:flex;flex-direction:column;border-left:2px solid #D5E1EC;"
               )}
             >
               {toc.map((t) => (
@@ -340,7 +353,7 @@ export default function AboutPage() {
                     href={t.href}
                     className="hvr-toc"
                     style={css(
-                      "display:block;padding:6px 0 6px 14px;margin-left:-2px;border-left:2px solid transparent;color:#0B4A7D;text-decoration:none;font-size:15px;",
+                      "display:block;padding:6px 0 6px 14px;margin-left:-2px;border-left:2px solid transparent;color:#0B4A7D;text-decoration:none;font-size:15px;"
                     )}
                   >
                     {t.label}
@@ -353,79 +366,86 @@ export default function AboutPage() {
 
         <div
           style={css(
-            "flex:999 1 560px;min-width:0;display:flex;flex-direction:column;gap:clamp(56px,7vw,80px);",
+            "flex:999 1 560px;min-width:0;display:flex;flex-direction:column;gap:clamp(56px,7vw,80px);"
           )}
         >
           {/* Vision and Mission */}
           <section
             id="vision"
             aria-labelledby="vm-title"
-            style={css("display:flex;flex-direction:column;gap:20px;scroll-margin-top:20px;")}
+            style={css(
+              "display:flex;flex-direction:column;gap:20px;scroll-margin-top:20px;"
+            )}
           >
             <h2 id="vm-title" style={css("font-size:clamp(25px,3vw,32px);")}>
               Vision and Mission
             </h2>
             <div
               style={css(
-                "display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,280px),1fr));gap:20px;",
+                "display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,280px),1fr));gap:20px;"
               )}
             >
               <div
                 style={css(
-                  "background:#0B4A7D;color:#fff;border-radius:8px;padding:30px;display:flex;flex-direction:column;gap:12px;",
+                  "background:#0B4A7D;color:#fff;border-radius:8px;padding:30px;display:flex;flex-direction:column;gap:12px;"
                 )}
               >
                 <h3
                   style={css(
-                    "color:#fff;font-size:15px;font-family:'Public Sans',sans-serif;letter-spacing:.1em;text-transform:uppercase;display:flex;align-items:center;gap:10px;",
+                    "color:#fff;font-size:15px;font-family:'Public Sans',sans-serif;letter-spacing:.1em;text-transform:uppercase;display:flex;align-items:center;gap:10px;"
                   )}
                 >
                   <span
                     aria-hidden="true"
-                    style={css("width:20px;height:4px;background:#7DC12B;border-radius:2px;")}
+                    style={css(
+                      "width:20px;height:4px;background:#7DC12B;border-radius:2px;"
+                    )}
                   />
                   Vision
                 </h3>
                 <p
                   style={css(
-                    "font-family:Merriweather,Georgia,serif;font-size:19px;line-height:1.6;",
+                    "font-family:Merriweather,Georgia,serif;font-size:19px;line-height:1.6;"
                   )}
                 >
                   By 2030, the City Internal Audit Services Department to be
                   internationally competitive and a premier partner of the City
                   Government of Butuan in attaining its strategic goals and
-                  objectives by providing independent, value-adding, and advanced
-                  internal audit services.
+                  objectives by providing independent, value-adding, and
+                  advanced internal audit services.
                 </p>
               </div>
               <div
                 style={css(
-                  "background:#E3F0FB;border-radius:8px;padding:30px;display:flex;flex-direction:column;gap:12px;",
+                  "background:#E3F0FB;border-radius:8px;padding:30px;display:flex;flex-direction:column;gap:12px;"
                 )}
               >
                 <h3
                   style={css(
-                    "font-size:15px;font-family:'Public Sans',sans-serif;letter-spacing:.1em;text-transform:uppercase;display:flex;align-items:center;gap:10px;",
+                    "font-size:15px;font-family:'Public Sans',sans-serif;letter-spacing:.1em;text-transform:uppercase;display:flex;align-items:center;gap:10px;"
                   )}
                 >
                   <span
                     aria-hidden="true"
-                    style={css("width:20px;height:4px;background:#7DC12B;border-radius:2px;")}
+                    style={css(
+                      "width:20px;height:4px;background:#7DC12B;border-radius:2px;"
+                    )}
                   />
                   Mission
                 </h3>
                 <p
                   style={css(
-                    "font-family:Merriweather,Georgia,serif;font-size:19px;line-height:1.6;color:#1A2B3C;",
+                    "font-family:Merriweather,Georgia,serif;font-size:19px;line-height:1.6;color:#1A2B3C;"
                   )}
                 >
                   To enhance and protect organizational value by providing
                   risk-based and objective assurance, advice, and insight. The
-                  CIASD helps the City Government of Butuan accomplish its mission
-                  to be a great, inspirational, competitive, livable, and
-                  sustainable city by bringing a systematic, disciplined approach
-                  to evaluate and improve the effectiveness of risk management,
-                  control, governance, quality, and compliance processes.
+                  CIASD helps the City Government of Butuan accomplish its
+                  mission to be a great, inspirational, competitive, livable,
+                  and sustainable city by bringing a systematic, disciplined
+                  approach to evaluate and improve the effectiveness of risk
+                  management, control, governance, quality, and compliance
+                  processes.
                 </p>
               </div>
             </div>
@@ -435,7 +455,9 @@ export default function AboutPage() {
           <section
             id="history"
             aria-labelledby="hist-title"
-            style={css("display:flex;flex-direction:column;gap:20px;scroll-margin-top:20px;")}
+            style={css(
+              "display:flex;flex-direction:column;gap:20px;scroll-margin-top:20px;"
+            )}
           >
             <h2 id="hist-title" style={css("font-size:clamp(25px,3vw,32px);")}>
               History
@@ -452,19 +474,19 @@ export default function AboutPage() {
             </p>
             <ol
               style={css(
-                "list-style:none;margin:0;padding:0;display:flex;flex-direction:column;max-width:720px;",
+                "list-style:none;margin:0;padding:0;display:flex;flex-direction:column;max-width:720px;"
               )}
             >
               {history.map((h) => (
                 <li
                   key={h.year}
                   style={css(
-                    "display:grid;grid-template-columns:72px 1fr;gap:16px;padding:14px 0;border-top:1px solid #E1EAF2;",
+                    "display:grid;grid-template-columns:72px 1fr;gap:16px;padding:14px 0;border-top:1px solid #E1EAF2;"
                   )}
                 >
                   <span
                     style={css(
-                      "font-family:Merriweather,Georgia,serif;font-weight:700;color:#0B4A7D;font-size:18px;",
+                      "font-family:Merriweather,Georgia,serif;font-weight:700;color:#0B4A7D;font-size:18px;"
                     )}
                   >
                     {h.year}
@@ -479,9 +501,14 @@ export default function AboutPage() {
           <section
             id="mandate"
             aria-labelledby="mandate-title"
-            style={css("display:flex;flex-direction:column;gap:20px;scroll-margin-top:20px;")}
+            style={css(
+              "display:flex;flex-direction:column;gap:20px;scroll-margin-top:20px;"
+            )}
           >
-            <h2 id="mandate-title" style={css("font-size:clamp(25px,3vw,32px);")}>
+            <h2
+              id="mandate-title"
+              style={css("font-size:clamp(25px,3vw,32px);")}
+            >
               Mandate and Legal Basis
             </h2>
             <p style={css("max-width:720px;")}>
@@ -490,14 +517,14 @@ export default function AboutPage() {
             </p>
             <ul
               style={css(
-                "list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:12px;",
+                "list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:12px;"
               )}
             >
               {laws.map((l) => (
                 <li
                   key={l.title}
                   style={css(
-                    "display:flex;gap:16px;padding:20px 22px;border:1px solid #D5E1EC;border-radius:8px;",
+                    "display:flex;gap:16px;padding:20px 22px;border:1px solid #D5E1EC;border-radius:8px;"
                   )}
                 >
                   <svg
@@ -514,9 +541,13 @@ export default function AboutPage() {
                   >
                     <path d="M12 3v18M5 7h14M7 7l-3 7a3 3 0 0 0 6 0zM17 7l-3 7a3 3 0 0 0 6 0zM8 21h8" />
                   </svg>
-                  <span style={css("display:flex;flex-direction:column;gap:4px;")}>
+                  <span
+                    style={css("display:flex;flex-direction:column;gap:4px;")}
+                  >
                     <strong style={css("color:#0B4A7D;")}>{l.title}</strong>
-                    <span style={css("color:#3D5166;font-size:16px;")}>{l.text}</span>
+                    <span style={css("color:#3D5166;font-size:16px;")}>
+                      {l.text}
+                    </span>
                   </span>
                 </li>
               ))}
@@ -527,22 +558,27 @@ export default function AboutPage() {
           <section
             id="values"
             aria-labelledby="values-title"
-            style={css("display:flex;flex-direction:column;gap:20px;scroll-margin-top:20px;")}
+            style={css(
+              "display:flex;flex-direction:column;gap:20px;scroll-margin-top:20px;"
+            )}
           >
-            <h2 id="values-title" style={css("font-size:clamp(25px,3vw,32px);")}>
+            <h2
+              id="values-title"
+              style={css("font-size:clamp(25px,3vw,32px);")}
+            >
               Our Purpose and Core Principles
             </h2>
             <p style={css("max-width:760px;")}>{purpose}</p>
             <ul
               style={css(
-                "list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,260px),1fr));gap:12px;",
+                "list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,260px),1fr));gap:12px;"
               )}
             >
               {principles.map((pr) => (
                 <li
                   key={pr}
                   style={css(
-                    "display:flex;gap:12px;align-items:flex-start;background:#E3F0FB;border-radius:8px;padding:16px 18px;",
+                    "display:flex;gap:12px;align-items:flex-start;background:#E3F0FB;border-radius:8px;padding:16px 18px;"
                   )}
                 >
                   <svg
@@ -554,7 +590,13 @@ export default function AboutPage() {
                     style={css("flex-shrink:0;margin-top:1px;")}
                   >
                     <circle cx="12" cy="12" r="11" fill="#0B4A7D" />
-                    <path d="M7 12.5l3.2 3L17 9" stroke="#7DC12B" strokeWidth="2.6" strokeLinecap="round" strokeLinejoin="round" />
+                    <path
+                      d="M7 12.5l3.2 3L17 9"
+                      stroke="#7DC12B"
+                      strokeWidth="2.6"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                    />
                   </svg>
                   <span style={css("font-size:16px;color:#1A2B3C;")}>{pr}</span>
                 </li>
@@ -566,26 +608,28 @@ export default function AboutPage() {
           <section
             id="functions"
             aria-labelledby="fn-title"
-            style={css("display:flex;flex-direction:column;gap:20px;scroll-margin-top:20px;")}
+            style={css(
+              "display:flex;flex-direction:column;gap:20px;scroll-margin-top:20px;"
+            )}
           >
             <h2 id="fn-title" style={css("font-size:clamp(25px,3vw,32px);")}>
               Functions
             </h2>
             <ol
               style={css(
-                "list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,300px),1fr));gap:0 32px;",
+                "list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,300px),1fr));gap:0 32px;"
               )}
             >
               {functions.map((f) => (
                 <li
                   key={f.n}
                   style={css(
-                    "display:flex;gap:14px;padding:14px 0;border-top:1px solid #E1EAF2;",
+                    "display:flex;gap:14px;padding:14px 0;border-top:1px solid #E1EAF2;"
                   )}
                 >
                   <span
                     style={css(
-                      "font-family:Merriweather,Georgia,serif;font-weight:700;color:#1878B0;min-width:26px;",
+                      "font-family:Merriweather,Georgia,serif;font-weight:700;color:#1878B0;min-width:26px;"
                     )}
                   >
                     {f.n}
@@ -600,21 +644,24 @@ export default function AboutPage() {
           <section
             id="independence"
             aria-labelledby="ind-title"
-            style={css("display:flex;flex-direction:column;gap:20px;scroll-margin-top:20px;")}
+            style={css(
+              "display:flex;flex-direction:column;gap:20px;scroll-margin-top:20px;"
+            )}
           >
             <h2 id="ind-title" style={css("font-size:clamp(25px,3vw,32px);")}>
               Independence and Reporting Line
             </h2>
             <p style={css("max-width:720px;")}>
               The CIASD&apos;s independence is established by its Internal Audit
-              Charter. The City IAS Officer reports administratively to the Local
-              Chief Executive (City Mayor) and functionally to the City Audit
-              Committee, so audit work can be performed without interference in
-              audit selection, scope, procedures, timing, or report content.
+              Charter. The City IAS Officer reports administratively to the
+              Local Chief Executive (City Mayor) and functionally to the City
+              Audit Committee, so audit work can be performed without
+              interference in audit selection, scope, procedures, timing, or
+              report content.
             </p>
             <ul
               style={css(
-                "margin:0;padding-left:22px;display:flex;flex-direction:column;gap:10px;max-width:720px;",
+                "margin:0;padding-left:22px;display:flex;flex-direction:column;gap:10px;max-width:720px;"
               )}
             >
               <li>
@@ -630,19 +677,20 @@ export default function AboutPage() {
               <li>
                 Under its Internal Audit Charter, the CIASD has full, free, and
                 unrestricted access to the City Audit Committee and to the
-                functions, data, records, properties, and personnel needed for an
-                engagement, with strict accountability for confidentiality.
+                functions, data, records, properties, and personnel needed for
+                an engagement, with strict accountability for confidentiality.
               </li>
               <li>
                 The City IAS Officer confirms the internal audit activity&apos;s
-                organizational independence to the Local Chief Executive at least
-                annually, and discloses any interference to the City Audit
+                organizational independence to the Local Chief Executive at
+                least annually, and discloses any interference to the City Audit
                 Committee.
               </li>
               <li>
-                The CIASD conforms with the Global Internal Audit Standards (GIAS)
-                and maintains a Quality Assurance and Improvement Program, with an
-                external assessment at least once every five years.
+                The CIASD conforms with the Global Internal Audit Standards
+                (GIAS) and maintains a Quality Assurance and Improvement
+                Program, with an external assessment at least once every five
+                years.
               </li>
             </ul>
             <a
@@ -650,7 +698,7 @@ export default function AboutPage() {
               download
               className="hvr-invert"
               style={css(
-                "align-self:flex-start;display:inline-flex;align-items:center;gap:10px;min-height:48px;padding:0 20px;border:2px solid #0B4A7D;border-radius:4px;color:#0B4A7D;font-weight:700;text-decoration:none;",
+                "align-self:flex-start;display:inline-flex;align-items:center;gap:10px;min-height:48px;padding:0 20px;border:2px solid #0B4A7D;border-radius:4px;color:#0B4A7D;font-weight:700;text-decoration:none;"
               )}
             >
               <svg
@@ -670,14 +718,16 @@ export default function AboutPage() {
             </a>
             <div
               style={css(
-                "background:#F6FAFE;border:1px solid #D5E1EC;border-left:4px solid #0B4A7D;border-radius:8px;padding:clamp(18px,3vw,24px);display:flex;flex-direction:column;gap:10px;max-width:760px;",
+                "background:#F6FAFE;border:1px solid #D5E1EC;border-left:4px solid #0B4A7D;border-radius:8px;padding:clamp(18px,3vw,24px);display:flex;flex-direction:column;gap:10px;max-width:760px;"
               )}
             >
-              <h3 style={css("font-size:19px;")}>Oversight: the City Audit Committee</h3>
+              <h3 style={css("font-size:19px;")}>
+                Oversight: the City Audit Committee
+              </h3>
               <p>
                 The CIASD&apos;s oversight body is the City Audit Committee,
-                created by City Ordinance No. 7253-2025. It is chaired by the City
-                Mayor and vice-chaired by the City Vice-Mayor, with four
+                created by City Ordinance No. 7253-2025. It is chaired by the
+                City Mayor and vice-chaired by the City Vice-Mayor, with four
                 Sangguniang Panlungsod committee chairpersons as members. The
                 CIASD serves as its Secretariat.
               </p>
@@ -688,7 +738,9 @@ export default function AboutPage() {
           <section
             id="structure"
             aria-labelledby="org-title"
-            style={css("display:flex;flex-direction:column;gap:20px;scroll-margin-top:20px;")}
+            style={css(
+              "display:flex;flex-direction:column;gap:20px;scroll-margin-top:20px;"
+            )}
           >
             <h2 id="org-title" style={css("font-size:clamp(25px,3vw,32px);")}>
               Organizational Structure
@@ -703,70 +755,94 @@ export default function AboutPage() {
             </p>
             <div
               style={css(
-                "display:flex;flex-direction:column;gap:16px;padding:clamp(14px,2.5vw,24px);background:#F6FAFE;border:1px solid #D5E1EC;border-radius:8px;",
+                "display:flex;flex-direction:column;gap:16px;padding:clamp(14px,2.5vw,24px);background:#F6FAFE;border:1px solid #D5E1EC;border-radius:8px;"
               )}
             >
-              <div style={css("display:flex;flex-wrap:wrap;gap:16px;align-items:stretch;")}>
+              <div
+                style={css(
+                  "display:flex;flex-wrap:wrap;gap:16px;align-items:stretch;"
+                )}
+              >
                 <div
                   style={css(
-                    "flex:1 1 260px;background:#0B4A7D;color:#fff;border-radius:8px;padding:20px;display:flex;gap:16px;align-items:center;border-bottom:4px solid #7DC12B;",
+                    "flex:1 1 260px;background:#0B4A7D;color:#fff;border-radius:8px;padding:20px;display:flex;gap:16px;align-items:center;border-bottom:4px solid #7DC12B;"
                   )}
                 >
                   <span
                     aria-hidden="true"
                     style={css(
-                      "width:64px;height:64px;flex-shrink:0;border-radius:50%;background:#fff;color:#0B4A7D;font-family:Merriweather,Georgia,serif;font-weight:900;font-size:22px;display:flex;align-items:center;justify-content:center;box-shadow:0 0 0 3px #7DC12B;",
+                      "width:64px;height:64px;flex-shrink:0;border-radius:50%;background:#fff;color:#0B4A7D;font-family:Merriweather,Georgia,serif;font-weight:900;font-size:22px;display:flex;align-items:center;justify-content:center;box-shadow:0 0 0 3px #7DC12B;"
                     )}
                   >
                     {head.initials}
                   </span>
-                  <span style={css("display:flex;flex-direction:column;gap:2px;")}>
+                  <span
+                    style={css("display:flex;flex-direction:column;gap:2px;")}
+                  >
                     <span
                       style={css(
-                        "font-family:Merriweather,Georgia,serif;font-weight:700;font-size:18px;line-height:1.3;",
+                        "font-family:Merriweather,Georgia,serif;font-weight:700;font-size:18px;line-height:1.3;"
                       )}
                     >
                       {head.name}
                     </span>
-                    <span style={css("font-size:14px;color:#D6E6F4;")}>{head.role}</span>
+                    <span style={css("font-size:14px;color:#D6E6F4;")}>
+                      {head.role}
+                    </span>
                   </span>
                 </div>
                 <div
                   style={css(
-                    "flex:2 1 380px;background:#fff;border:1px solid #CFDDEA;border-radius:8px;padding:16px 18px;display:flex;flex-direction:column;gap:12px;",
+                    "flex:2 1 380px;background:#fff;border:1px solid #CFDDEA;border-radius:8px;padding:16px 18px;display:flex;flex-direction:column;gap:12px;"
                   )}
                 >
                   <span
                     style={css(
-                      "font-size:13px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:#3F7412;display:flex;align-items:center;gap:8px;",
+                      "font-size:13px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:#3F7412;display:flex;align-items:center;gap:8px;"
                     )}
                   >
                     <span
                       aria-hidden="true"
-                      style={css("width:14px;height:4px;background:#7DC12B;border-radius:2px;")}
+                      style={css(
+                        "width:14px;height:4px;background:#7DC12B;border-radius:2px;"
+                      )}
                     />
                     Admin Support
                   </span>
                   <ul
                     style={css(
-                      "list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,200px),1fr));gap:10px 16px;",
+                      "list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,200px),1fr));gap:10px 16px;"
                     )}
                   >
                     {admin.map((m) => (
-                      <li key={m.name} style={css("display:flex;gap:10px;align-items:center;")}>
-                        <span aria-hidden="true" style={avatar(38, "#E3F0FB", "#0B4A7D")}>
+                      <li
+                        key={m.name}
+                        style={css("display:flex;gap:10px;align-items:center;")}
+                      >
+                        <span
+                          aria-hidden="true"
+                          style={avatar(38, "#E3F0FB", "#0B4A7D")}
+                        >
                           {m.initials}
                         </span>
-                        <span style={css("display:flex;flex-direction:column;line-height:1.3;")}>
-                          <span style={css("font-weight:600;font-size:15px;")}>{m.name}</span>
-                          <span style={css("font-size:13px;color:#4A5D70;")}>{m.role}</span>
+                        <span
+                          style={css(
+                            "display:flex;flex-direction:column;line-height:1.3;"
+                          )}
+                        >
+                          <span style={css("font-weight:600;font-size:15px;")}>
+                            {m.name}
+                          </span>
+                          <span style={css("font-size:13px;color:#4A5D70;")}>
+                            {m.role}
+                          </span>
                         </span>
                       </li>
                     ))}
                   </ul>
                 </div>
               </div>
-              <div
+              {/* <div
                 style={css(
                   "display:flex;gap:16px;align-items:center;background:#fff;border:1px solid #CFDDEA;border-left:4px solid #0B4A7D;border-radius:8px;padding:16px 18px;",
                 )}
@@ -795,36 +871,47 @@ export default function AboutPage() {
                     {assistantHead.role} · oversees the four audit divisions
                   </span>
                 </span>
-              </div>
+              </div> */}
               <div
                 style={css(
-                  "display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,250px),1fr));gap:16px;",
+                  "display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,250px),1fr));gap:16px;"
                 )}
               >
                 {divisions.map((d) => (
                   <div
                     key={d.name}
                     style={css(
-                      "background:#fff;border:1px solid #CFDDEA;border-radius:8px;overflow:hidden;display:flex;flex-direction:column;",
+                      "background:#fff;border:1px solid #CFDDEA;border-radius:8px;overflow:hidden;display:flex;flex-direction:column;"
                     )}
                   >
                     <h3
                       style={css(
-                        "background:#0B4A7D;color:#fff;font-family:'Public Sans',sans-serif;font-size:14px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;padding:12px 16px;line-height:1.35;",
+                        "background:#0B4A7D;color:#fff;font-family:'Public Sans',sans-serif;font-size:14px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;padding:12px 16px;line-height:1.35;"
                       )}
                     >
                       {d.name}
                     </h3>
                     <div
                       style={css(
-                        "display:flex;gap:12px;align-items:center;padding:14px 16px;border-bottom:1px solid #E1EAF2;background:#F6FAFE;",
+                        "display:flex;gap:12px;align-items:center;padding:14px 16px;border-bottom:1px solid #E1EAF2;background:#F6FAFE;"
                       )}
                     >
-                      <span aria-hidden="true" style={avatar(48, "#0B4A7D", "#fff")}>
+                      <span
+                        aria-hidden="true"
+                        style={avatar(48, "#0B4A7D", "#fff")}
+                      >
                         {d.chief.initials}
                       </span>
-                      <span style={css("display:flex;flex-direction:column;line-height:1.3;")}>
-                        <span style={css("font-weight:700;color:#0B4A7D;font-size:15.5px;")}>
+                      <span
+                        style={css(
+                          "display:flex;flex-direction:column;line-height:1.3;"
+                        )}
+                      >
+                        <span
+                          style={css(
+                            "font-weight:700;color:#0B4A7D;font-size:15.5px;"
+                          )}
+                        >
                           {d.chief.name}
                         </span>
                         <span style={css("font-size:13px;color:#4A5D70;")}>
@@ -832,29 +919,58 @@ export default function AboutPage() {
                         </span>
                       </span>
                     </div>
-                    <div style={css("padding:14px 16px;display:flex;flex-direction:column;gap:16px;")}>
+                    <div
+                      style={css(
+                        "padding:14px 16px;display:flex;flex-direction:column;gap:16px;"
+                      )}
+                    >
                       {d.sections.map((s) => (
-                        <div key={s.name} style={css("display:flex;flex-direction:column;gap:8px;")}>
+                        <div
+                          key={s.name}
+                          style={css(
+                            "display:flex;flex-direction:column;gap:8px;"
+                          )}
+                        >
                           <span
                             style={css(
-                              "font-size:12.5px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:#1878B0;",
+                              "font-size:12.5px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:#1878B0;"
                             )}
                           >
                             {s.name}
                           </span>
                           <ul
                             style={css(
-                              "list-style:none;margin:0;padding:0 0 0 12px;border-left:2px solid #D5E1EC;display:flex;flex-direction:column;gap:8px;",
+                              "list-style:none;margin:0;padding:0 0 0 12px;border-left:2px solid #D5E1EC;display:flex;flex-direction:column;gap:8px;"
                             )}
                           >
                             {s.members.map((m) => (
-                              <li key={m.name} style={css("display:flex;gap:10px;align-items:center;")}>
-                                <span aria-hidden="true" style={avatar(34, "#E3F0FB", "#0B4A7D")}>
+                              <li
+                                key={m.name}
+                                style={css(
+                                  "display:flex;gap:10px;align-items:center;"
+                                )}
+                              >
+                                <span
+                                  aria-hidden="true"
+                                  style={avatar(34, "#E3F0FB", "#0B4A7D")}
+                                >
                                   {m.initials}
                                 </span>
-                                <span style={css("display:flex;flex-direction:column;line-height:1.3;")}>
-                                  <span style={css("font-weight:600;font-size:15px;")}>{m.name}</span>
-                                  <span style={css("font-size:13px;color:#4A5D70;")}>
+                                <span
+                                  style={css(
+                                    "display:flex;flex-direction:column;line-height:1.3;"
+                                  )}
+                                >
+                                  <span
+                                    style={css(
+                                      "font-weight:600;font-size:15px;"
+                                    )}
+                                  >
+                                    {m.name}
+                                  </span>
+                                  <span
+                                    style={css("font-size:13px;color:#4A5D70;")}
+                                  >
                                     Internal Auditor
                                   </span>
                                 </span>
@@ -866,14 +982,23 @@ export default function AboutPage() {
                       {d.assistant ? (
                         <div
                           style={css(
-                            "display:flex;gap:10px;align-items:center;padding-top:12px;border-top:1px dashed #CFDDEA;",
+                            "display:flex;gap:10px;align-items:center;padding-top:12px;border-top:1px dashed #CFDDEA;"
                           )}
                         >
-                          <span aria-hidden="true" style={avatar(34, "#E3F0FB", "#0B4A7D")}>
+                          <span
+                            aria-hidden="true"
+                            style={avatar(34, "#E3F0FB", "#0B4A7D")}
+                          >
                             {d.assistant.initials}
                           </span>
-                          <span style={css("display:flex;flex-direction:column;line-height:1.3;")}>
-                            <span style={css("font-weight:600;font-size:15px;")}>
+                          <span
+                            style={css(
+                              "display:flex;flex-direction:column;line-height:1.3;"
+                            )}
+                          >
+                            <span
+                              style={css("font-weight:600;font-size:15px;")}
+                            >
                               {d.assistant.name}
                             </span>
                             <span style={css("font-size:13px;color:#4A5D70;")}>
@@ -893,35 +1018,54 @@ export default function AboutPage() {
           <section
             id="staff"
             aria-labelledby="staff-title"
-            style={css("display:flex;flex-direction:column;gap:24px;scroll-margin-top:20px;")}
+            style={css(
+              "display:flex;flex-direction:column;gap:24px;scroll-margin-top:20px;"
+            )}
           >
             <h2 id="staff-title" style={css("font-size:clamp(25px,3vw,32px);")}>
               Our Leadership
             </h2>
             <ul
               style={css(
-                "list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,190px),1fr));gap:28px 20px;",
+                "list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,190px),1fr));gap:28px 20px;"
               )}
             >
               {leaders.map((s) => (
-                <li key={s.slot} style={css("display:flex;flex-direction:column;gap:12px;")}>
-                  <div style={css("width:100%;aspect-ratio:4/5;position:relative;")}>
+                <li
+                  key={s.slot}
+                  style={css("display:flex;flex-direction:column;gap:12px;")}
+                >
+                  <div
+                    style={css(
+                      "width:100%;aspect-ratio:4/5;position:relative;"
+                    )}
+                  >
                     <ImageSlot
                       shape="rounded"
                       radius={8}
                       placeholder="Portrait"
-                      style={css("position:absolute;inset:0;width:100%;height:100%;")}
+                      style={css(
+                        "position:absolute;inset:0;width:100%;height:100%;"
+                      )}
                     />
                   </div>
                   <span
                     style={css(
-                      "display:flex;flex-direction:column;gap:2px;border-top:3px solid #7DC12B;padding-top:10px;",
+                      "display:flex;flex-direction:column;gap:2px;border-top:3px solid #7DC12B;padding-top:10px;"
                     )}
                   >
-                    <strong style={css("color:#0B4A7D;font-size:16px;line-height:1.35;")}>
+                    <strong
+                      style={css(
+                        "color:#0B4A7D;font-size:16px;line-height:1.35;"
+                      )}
+                    >
                       {s.name}
                     </strong>
-                    <span style={css("font-size:14px;color:#3D5166;line-height:1.45;")}>
+                    <span
+                      style={css(
+                        "font-size:14px;color:#3D5166;line-height:1.45;"
+                      )}
+                    >
                       {s.role}
                     </span>
                   </span>
@@ -934,30 +1078,53 @@ export default function AboutPage() {
           <section
             id="coa"
             aria-labelledby="coa-title"
-            style={css("display:flex;flex-direction:column;gap:20px;scroll-margin-top:20px;")}
+            style={css(
+              "display:flex;flex-direction:column;gap:20px;scroll-margin-top:20px;"
+            )}
           >
             <h2 id="coa-title" style={css("font-size:clamp(25px,3vw,32px);")}>
               IAS and COA: What&apos;s the Difference?
             </h2>
             <p style={css("max-width:720px;")}>
-              The IAS is often confused with the Commission on Audit. Both review
-              government operations, but they have different roles.
+              The IAS is often confused with the Commission on Audit. Both
+              review government operations, but they have different roles.
             </p>
-            <div style={css("overflow-x:auto;border:1px solid #D5E1EC;border-radius:8px;")}>
+            <div
+              style={css(
+                "overflow-x:auto;border:1px solid #D5E1EC;border-radius:8px;"
+              )}
+            >
               <table
                 style={css(
-                  "width:100%;min-width:620px;border-collapse:collapse;font-size:16px;",
+                  "width:100%;min-width:620px;border-collapse:collapse;font-size:16px;"
                 )}
               >
                 <thead>
-                  <tr style={css("background:#0B4A7D;color:#fff;text-align:left;")}>
-                    <th scope="col" style={css("padding:14px 18px;width:22%;font-weight:700;position:relative;")}>
-                      <span style={css("position:absolute;left:-9999px;")}>Aspect</span>
+                  <tr
+                    style={css(
+                      "background:#0B4A7D;color:#fff;text-align:left;"
+                    )}
+                  >
+                    <th
+                      scope="col"
+                      style={css(
+                        "padding:14px 18px;width:22%;font-weight:700;position:relative;"
+                      )}
+                    >
+                      <span style={css("position:absolute;left:-9999px;")}>
+                        Aspect
+                      </span>
                     </th>
-                    <th scope="col" style={css("padding:14px 18px;font-weight:700;")}>
+                    <th
+                      scope="col"
+                      style={css("padding:14px 18px;font-weight:700;")}
+                    >
                       City Internal Audit Services Department
                     </th>
-                    <th scope="col" style={css("padding:14px 18px;font-weight:700;")}>
+                    <th
+                      scope="col"
+                      style={css("padding:14px 18px;font-weight:700;")}
+                    >
                       Commission on Audit (COA)
                     </th>
                   </tr>
@@ -966,12 +1133,14 @@ export default function AboutPage() {
                   {compare.map((c) => (
                     <tr
                       key={c.k}
-                      style={css("border-top:1px solid #D5E1EC;vertical-align:top;")}
+                      style={css(
+                        "border-top:1px solid #D5E1EC;vertical-align:top;"
+                      )}
                     >
                       <th
                         scope="row"
                         style={css(
-                          "padding:14px 18px;text-align:left;color:#0B4A7D;background:#F6FAFE;font-weight:700;",
+                          "padding:14px 18px;text-align:left;color:#0B4A7D;background:#F6FAFE;font-weight:700;"
                         )}
                       >
                         {c.k}
@@ -986,13 +1155,20 @@ export default function AboutPage() {
           </section>
 
           {/* Service Pledge */}
-          <section id="pledge" aria-labelledby="pledge-title" style={css("scroll-margin-top:20px;")}>
+          <section
+            id="pledge"
+            aria-labelledby="pledge-title"
+            style={css("scroll-margin-top:20px;")}
+          >
             <div
               style={css(
-                "background:#E3F0FB;border-radius:8px;padding:clamp(28px,4vw,44px);display:flex;flex-direction:column;gap:18px;",
+                "background:#E3F0FB;border-radius:8px;padding:clamp(28px,4vw,44px);display:flex;flex-direction:column;gap:18px;"
               )}
             >
-              <h2 id="pledge-title" style={css("font-size:clamp(25px,3vw,32px);")}>
+              <h2
+                id="pledge-title"
+                style={css("font-size:clamp(25px,3vw,32px);")}
+              >
                 Our Service Pledge
               </h2>
               <p style={css("max-width:720px;color:#1A2B3C;")}>
@@ -1002,33 +1178,37 @@ export default function AboutPage() {
               </p>
               <ol
                 style={css(
-                  "list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:14px;counter-reset:pledge;",
+                  "list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:14px;counter-reset:pledge;"
                 )}
               >
                 {pledge.map((item, i) => (
                   <li
                     key={item.title}
                     style={css(
-                      "display:flex;gap:16px;background:#fff;border-radius:8px;padding:18px 20px;",
+                      "display:flex;gap:16px;background:#fff;border-radius:8px;padding:18px 20px;"
                     )}
                   >
                     <span
                       aria-hidden="true"
                       style={css(
-                        "flex-shrink:0;width:34px;height:34px;border-radius:50%;background:#0B4A7D;color:#fff;font-family:Merriweather,Georgia,serif;font-weight:900;font-size:16px;display:flex;align-items:center;justify-content:center;",
+                        "flex-shrink:0;width:34px;height:34px;border-radius:50%;background:#0B4A7D;color:#fff;font-family:Merriweather,Georgia,serif;font-weight:900;font-size:16px;display:flex;align-items:center;justify-content:center;"
                       )}
                     >
                       {i + 1}
                     </span>
-                    <span style={css("display:flex;flex-direction:column;gap:4px;")}>
+                    <span
+                      style={css("display:flex;flex-direction:column;gap:4px;")}
+                    >
                       <strong
                         style={css(
-                          "font-family:Merriweather,Georgia,serif;color:#0B4A7D;font-size:17px;",
+                          "font-family:Merriweather,Georgia,serif;color:#0B4A7D;font-size:17px;"
                         )}
                       >
                         {item.title}
                       </strong>
-                      <span style={css("font-size:16px;color:#2C3E52;")}>{item.text}</span>
+                      <span style={css("font-size:16px;color:#2C3E52;")}>
+                        {item.text}
+                      </span>
                     </span>
                   </li>
                 ))}
