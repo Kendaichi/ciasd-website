@@ -5,7 +5,8 @@ import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import BackToTop from "@/components/BackToTop";
 import StructuredData from "@/components/StructuredData";
-import { SITE_URL, siteConfig } from "@/lib/site";
+import PrototypeBanner from "@/components/PrototypeBanner";
+import { PROTOTYPE_MODE, SITE_URL, siteConfig } from "@/lib/site";
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
@@ -36,17 +37,25 @@ export const metadata: Metadata = {
     title: `${siteConfig.name} | ${siteConfig.parentOrganization.name}`,
     description: siteConfig.description,
   },
-  robots: {
-    index: true,
-    follow: true,
-    googleBot: {
-      index: true,
-      follow: true,
-      "max-image-preview": "large",
-      "max-snippet": -1,
-      "max-video-preview": -1,
-    },
-  },
+  // Prototype mode keeps the whole site out of search indexes.
+  robots: PROTOTYPE_MODE
+    ? {
+        index: false,
+        follow: false,
+        nocache: true,
+        googleBot: { index: false, follow: false },
+      }
+    : {
+        index: true,
+        follow: true,
+        googleBot: {
+          index: true,
+          follow: true,
+          "max-image-preview": "large",
+          "max-snippet": -1,
+          "max-video-preview": -1,
+        },
+      },
   icons: {
     icon: [
       { url: "/assets/ias-logo-192.png", sizes: "192x192", type: "image/png" },
@@ -84,6 +93,7 @@ export default function RootLayout({
         />
       </head>
       <body>
+        <PrototypeBanner />
         <StructuredData />
         <Header />
         {children}

@@ -1,5 +1,6 @@
 import Link from "next/link";
 import ImageSlot from "@/components/ImageSlot";
+import LastUpdated from "@/components/LastUpdated";
 import { css } from "@/lib/css";
 import { pageMetadata } from "@/lib/seo";
 
@@ -210,11 +211,11 @@ export default function HomePage() {
                 ),
               },
               {
-                href: "/contact#report",
-                title: "Report a Concern",
-                body: "Tell us about a possible control weakness or irregularity in a city office. Reports are handled confidentially.",
-                cta: "Submit a concern",
-                icon: <path d="M4 22V4M4 4h12l-2 4 2 4H4" />,
+                href: "/contact",
+                title: "Contact Us",
+                body: "Ask a question, request information, share feedback, or report a concern about a city office.",
+                cta: "Send us a message",
+                icon: <path d="M3 6h18v12H3zM3 7l9 6 9-6" />,
               },
             ].map((card) => (
               <Link
@@ -485,6 +486,7 @@ export default function HomePage() {
           </div>
         </div>
       </section>
+      <LastUpdated path="/" />
     </main>
   );
 }

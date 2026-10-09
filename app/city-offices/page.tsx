@@ -1,6 +1,8 @@
 import { pageMetadata } from "@/lib/seo";
 import Link from "next/link";
+import LastUpdated from "@/components/LastUpdated";
 import { css } from "@/lib/css";
+import { siteConfig } from "@/lib/site";
 
 export const metadata = pageMetadata({
   title: "For City Offices",
@@ -115,12 +117,58 @@ const forms = [
   { code: "Form IAS-08", title: "Action Plan and Status Report", type: "XLSX", size: "72 KB" },
 ];
 
+// Sample upcoming trainings. Dates, venues, and slots are placeholders for the
+// prototype.
+const trainings = [
+  {
+    month: "Nov",
+    day: "12",
+    year: "2026",
+    title: "Risk-Based Internal Control Orientation",
+    time: "9:00 AM to 12:00 NN",
+    venue: "Training Room, 3rd Floor, Butuan City Hall",
+    audience: "Department heads and division chiefs",
+    slots: "18 of 30 slots left",
+  },
+  {
+    month: "Nov",
+    day: "26",
+    year: "2026",
+    title: "Cash Handling and Disbursement Controls Workshop",
+    time: "1:00 PM to 4:00 PM",
+    venue: "Training Room, 3rd Floor, Butuan City Hall",
+    audience: "Cashiers, collecting and disbursing officers",
+    slots: "9 of 25 slots left",
+  },
+  {
+    month: "Dec",
+    day: "10",
+    year: "2026",
+    title: "Records and Documentation Management for Barangays",
+    time: "9:00 AM to 4:00 PM",
+    venue: "Butuan City Hall Multi-Purpose Hall",
+    audience: "Barangay treasurers and secretaries",
+    slots: "Full, waitlist open",
+  },
+  {
+    month: "Jan",
+    day: "21",
+    year: "2027",
+    title: "Preparing for an Internal Audit: A Session for Auditees",
+    time: "9:00 AM to 12:00 NN",
+    venue: "Training Room, 3rd Floor, Butuan City Hall",
+    audience: "Liaison officers and office staff",
+    slots: "Opens December 2026",
+  },
+];
+
 const PILLS: ReadonlyArray<readonly [string, string]> = [
   ["#process", "Audit process"],
   ["#prepare", "How to prepare"],
   ["#rights", "Rights and responsibilities"],
   ["#faqs", "FAQs"],
   ["#forms", "Forms"],
+  ["#training", "Training calendar"],
 ];
 
 export default function CityOfficesPage() {
@@ -345,9 +393,13 @@ export default function CityOfficesPage() {
               Frequently asked questions
             </h2>
             <p>
-              Can&apos;t find your answer? Call us at (085) 817-2345 or email{" "}
-              <a href="mailto:ciasd@butuan.gov.ph" style={css("color:#0B4A7D;")}>
-                ciasd@butuan.gov.ph
+              Can&apos;t find your answer? Call us at{" "}
+              {siteConfig.contact.phoneLandline} or email{" "}
+              <a
+                href={`mailto:${siteConfig.contact.email}`}
+                style={css("color:#0B4A7D;")}
+              >
+                {siteConfig.contact.email}
               </a>
               .
             </p>
@@ -392,6 +444,21 @@ export default function CityOfficesPage() {
           <h2 id="forms-title" style={css("font-size:clamp(25px,3vw,32px);")}>
             Downloadable forms
           </h2>
+          <p style={css("max-width:720px;color:#2C3E52;")}>
+            These forms are collected on the{" "}
+            <Link href="/downloads" style={css("color:#0B4A7D;font-weight:600;")}>
+              Downloads page
+            </Link>
+            . While this prototype is under review, files are not yet available.
+            To request a form now, call {siteConfig.contact.phoneLandline} or email{" "}
+            <a
+              href={`mailto:${siteConfig.contact.email}`}
+              style={css("color:#0B4A7D;")}
+            >
+              {siteConfig.contact.email}
+            </a>
+            .
+          </p>
           <ul
             style={css(
               "list-style:none;margin:0;padding:0;display:flex;flex-direction:column;border-top:1px solid #D5E1EC;",
@@ -419,34 +486,121 @@ export default function CityOfficesPage() {
                     </span>
                   </span>
                 </span>
-                <a
-                  href="#"
-                  className="hvr-invert"
+                <span
                   style={css(
-                    "display:inline-flex;align-items:center;gap:8px;min-height:44px;padding:0 16px;border:2px solid #0B4A7D;border-radius:4px;color:#0B4A7D;font-weight:700;font-size:15px;text-decoration:none;position:relative;",
+                    "display:inline-flex;align-items:center;gap:8px;min-height:44px;padding:0 16px;border:1px dashed #9DB8D2;border-radius:4px;color:#5A6E82;font-weight:700;font-size:14px;background:#F6FAFE;",
                   )}
                 >
-                  <svg
-                    width="18"
-                    height="18"
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    stroke="currentColor"
-                    strokeWidth="2.4"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    aria-hidden="true"
-                  >
-                    <path d="M12 3v12M7 10l5 5 5-5M5 21h14" />
-                  </svg>
-                  Download
-                  <span style={css("position:absolute;left:-9999px;")}> {f.title}</span>
-                </a>
+                  Not yet available
+                </span>
               </li>
             ))}
           </ul>
         </div>
       </section>
+      {/* Training calendar */}
+      <section
+        id="training"
+        aria-labelledby="training-title"
+        style={css("background:#E3F0FB;scroll-margin-top:20px;")}
+      >
+        <div
+          style={css(
+            "max-width:1200px;margin:0 auto;padding:clamp(48px,7vw,80px) clamp(16px,4vw,32px) clamp(56px,8vw,96px);display:flex;flex-direction:column;gap:28px;",
+          )}
+        >
+          <div style={css("display:flex;flex-direction:column;gap:10px;max-width:760px;")}>
+            <h2 id="training-title" style={css("font-size:clamp(25px,3vw,32px);")}>
+              Training calendar
+            </h2>
+            <p>
+              Upcoming capacity-building sessions run by the IAS for city offices
+              and barangays. Schedules below are samples for this prototype. To
+              confirm a slot or request a session for your office, call{" "}
+              {siteConfig.contact.phoneLandline} or email{" "}
+              <a
+                href={`mailto:${siteConfig.contact.email}`}
+                style={css("color:#0B4A7D;")}
+              >
+                {siteConfig.contact.email}
+              </a>
+              .
+            </p>
+          </div>
+          <ul
+            style={css(
+              "list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,300px),1fr));gap:20px;",
+            )}
+          >
+            {trainings.map((t) => (
+              <li
+                key={t.title}
+                style={css(
+                  "background:#fff;border:1px solid #CFDDEA;border-radius:8px;border-top:4px solid #0B4A7D;padding:clamp(18px,2.5vw,24px);display:flex;flex-direction:column;gap:16px;",
+                )}
+              >
+                <div style={css("display:flex;gap:14px;align-items:flex-start;")}>
+                  <span
+                    aria-hidden="true"
+                    style={css(
+                      "flex-shrink:0;width:54px;border-radius:6px;overflow:hidden;text-align:center;border:1px solid #CFDDEA;",
+                    )}
+                  >
+                    <span
+                      style={css(
+                        "display:block;background:#0B4A7D;color:#fff;font-size:12px;font-weight:700;letter-spacing:.05em;text-transform:uppercase;padding:3px 0;",
+                      )}
+                    >
+                      {t.month}
+                    </span>
+                    <span
+                      style={css(
+                        "display:block;font-family:Merriweather,Georgia,serif;font-size:22px;font-weight:900;color:#0B4A7D;padding:4px 0;",
+                      )}
+                    >
+                      {t.day}
+                    </span>
+                  </span>
+                  <div style={css("display:flex;flex-direction:column;gap:4px;")}>
+                    <h3 style={css("font-size:18px;line-height:1.35;")}>{t.title}</h3>
+                    <span style={css("font-size:14px;color:#4A5D70;")}>
+                      {t.month} {t.day}, {t.year} · {t.time}
+                    </span>
+                  </div>
+                </div>
+                <dl style={css("margin:0;display:flex;flex-direction:column;gap:8px;font-size:15px;")}>
+                  <div style={css("display:flex;gap:8px;")}>
+                    <dt style={css("font-weight:700;min-width:54px;color:#2C3E52;")}>
+                      Venue
+                    </dt>
+                    <dd style={css("margin:0;color:#3D5166;")}>{t.venue}</dd>
+                  </div>
+                  <div style={css("display:flex;gap:8px;")}>
+                    <dt style={css("font-weight:700;min-width:54px;color:#2C3E52;")}>
+                      For
+                    </dt>
+                    <dd style={css("margin:0;color:#3D5166;")}>{t.audience}</dd>
+                  </div>
+                </dl>
+                <div
+                  style={css(
+                    "display:flex;flex-wrap:wrap;gap:8px 14px;align-items:center;justify-content:space-between;margin-top:auto;padding-top:12px;border-top:1px solid #EDF3F9;",
+                  )}
+                >
+                  <span style={css("font-size:14px;font-weight:700;color:#0B4A7D;")}>
+                    {t.slots}
+                  </span>
+                  <span style={css("font-size:13.5px;color:#5A6E82;")}>
+                    Register at the IAS office
+                  </span>
+                </div>
+              </li>
+            ))}
+          </ul>
+        </div>
+      </section>
+
+      <LastUpdated path="/city-offices" />
     </main>
   );
 }

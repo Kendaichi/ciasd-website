@@ -5,6 +5,9 @@ import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
 import { css } from "@/lib/css";
 
+// "Contact Us" is intentionally omitted here: it is served by the dedicated
+// header button on desktop and by the Contact Us button in the mobile menu, so
+// listing it in the nav as well would duplicate it.
 const NAV: ReadonlyArray<readonly [string, string, string]> = [
   ["home", "Home", "/"],
   ["about", "About Us", "/about"],
@@ -12,7 +15,6 @@ const NAV: ReadonlyArray<readonly [string, string, string]> = [
   ["offices", "For City Offices", "/city-offices"],
   ["news", "News & Updates", "/news"],
   ["careers", "Careers", "/careers"],
-  ["contact", "Contact Us", "/contact"],
 ];
 
 function activeKey(pathname: string): string {
@@ -51,7 +53,10 @@ export default function Header() {
     setOpen(false);
   }, [pathname]);
 
-  let pst = " ";
+  // Sensible fallback shown on the server and before the clock starts, so the
+  // bar never renders empty and the server/client markup matches (no hydration
+  // mismatch). The live Asia/Manila value takes over once the effect runs.
+  let pst = "Loading...";
   if (now) {
     try {
       pst = new Intl.DateTimeFormat("en-PH", {

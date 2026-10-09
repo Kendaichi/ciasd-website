@@ -65,7 +65,7 @@ components/
   Footer.tsx          Server: links + inline Philippine-seal SVG
   ImageSlot.tsx       Presentational photo placeholder (ported <image-slot>)
   NewsFeed.tsx        Client: category filter + post grid + pagination
-  ReportForm.tsx      Client: "Report a Concern" form (anonymous / consent / submit)
+  ReportForm.tsx      Client: contact / message form (anonymous / consent / submit)
   OpenOnHash.tsx      Client: opens a <details> section when deep-linked by hash
 lib/
   css.ts              Parses the original inline CSS strings into React style objects

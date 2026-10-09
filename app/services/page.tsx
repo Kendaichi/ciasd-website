@@ -1,7 +1,9 @@
 import { pageMetadata } from "@/lib/seo";
 import Link from "next/link";
 import OpenOnHash from "@/components/OpenOnHash";
+import LastUpdated from "@/components/LastUpdated";
 import { css } from "@/lib/css";
+import { siteConfig } from "@/lib/site";
 
 export const metadata = pageMetadata({
   title: "Services",
@@ -325,7 +327,7 @@ const services = DATA.map((s, i) => ({
 const feedback = [
   {
     q: "How to send feedback",
-    a: "For walk-ins, clients may answer the Client Satisfaction Measurement (CSM) Questionnaire in the office lobby and place it in the feedback and complaints drop box. Other concerns may be coursed through email at ciasd@butuan.gov.ph.",
+    a: `For walk-ins, clients may answer the Client Satisfaction Measurement (CSM) Questionnaire in the office lobby and place it in the feedback and complaints drop box. Other concerns may be coursed through email at ${siteConfig.contact.email}.`,
   },
   {
     q: "How feedback is processed",
@@ -333,7 +335,7 @@ const feedback = [
   },
   {
     q: "How to file a complaint",
-    a: "Clients may express complaints, comments, or suggestions through several channels: visit and talk to our Public Assistance Complaints Desk Officer (PACDO); write a formal letter addressed to the Local Chief Executive or the Department Head; or email ciasd@butuan.gov.ph.",
+    a: `Clients may express complaints, comments, or suggestions through several channels: visit and talk to our Public Assistance Complaints Desk Officer (PACDO); write a formal letter addressed to the Local Chief Executive or the Department Head; or email ${siteConfig.contact.email}.`,
   },
   {
     q: "How complaints are processed",
@@ -744,6 +746,7 @@ export default function ServicesPage() {
           <DownloadButton />
         </div>
       </section>
+      <LastUpdated path="/services" />
     </main>
   );
 }

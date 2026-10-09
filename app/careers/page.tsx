@@ -1,6 +1,7 @@
 import { pageMetadata } from "@/lib/seo";
 import Link from "next/link";
 import ImageSlot from "@/components/ImageSlot";
+import LastUpdated from "@/components/LastUpdated";
 import { css } from "@/lib/css";
 
 export const metadata = pageMetadata({
@@ -407,6 +408,7 @@ export default function CareersPage() {
           </p>
         </div>
       </section>
+      <LastUpdated path="/careers" />
     </main>
   );
 }

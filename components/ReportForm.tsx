@@ -2,8 +2,10 @@
 
 import { useState } from "react";
 import { css } from "@/lib/css";
+import { PROTOTYPE_MODE, siteConfig } from "@/lib/site";
 
 const offices = [
+  "Not about a specific office",
   "City Treasurer's Office",
   "City Accounting Office",
   "City Budget Office",
@@ -16,12 +18,15 @@ const offices = [
   "Other office",
 ];
 
-const natures = [
-  "Weak or missing controls",
-  "Inefficient process or delays",
-  "Possible misuse of funds or property",
-  "Non-compliance with laws or policies",
-  "Records or documentation issues",
+const subjects = [
+  "General inquiry or question",
+  "Request for information or assistance",
+  "Feedback or suggestion",
+  "Concern: weak or missing controls",
+  "Concern: inefficient process or delays",
+  "Concern: possible misuse of funds or property",
+  "Concern: non-compliance with laws or policies",
+  "Concern: records or documentation issues",
   "Other",
 ];
 
@@ -37,6 +42,8 @@ export default function ReportForm() {
   const [anon, setAnon] = useState(false);
   const [consent, setConsent] = useState(false);
   const [submitted, setSubmitted] = useState(false);
+  // Honeypot: must stay empty for real people. Bots that auto-fill it are spam.
+  const [honeypot, setHoneypot] = useState("");
 
   if (submitted) {
     return (
@@ -50,11 +57,11 @@ export default function ReportForm() {
             <circle cx="12" cy="12" r="11" fill="#0B4A7D" />
             <path d="M7 12.5l3.2 3L17 9" stroke="#7DC12B" strokeWidth="2.4" strokeLinecap="round" strokeLinejoin="round" />
           </svg>
-          <h3 style={css("font-size:24px;")}>Your concern has been received</h3>
+          <h3 style={css("font-size:24px;")}>Your message has been received</h3>
           <p>
             Your reference number is{" "}
             <strong style={css("font-size:19px;color:#0B4A7D;letter-spacing:.02em;")}>
-              IAS-RC-2026-0147
+              IAS-2026-0147
             </strong>
             . Please keep it for follow-up.
           </p>
@@ -68,7 +75,7 @@ export default function ReportForm() {
               "min-height:44px;padding:0 18px;border:2px solid #0B4A7D;border-radius:4px;background:#fff;color:#0B4A7D;font:700 15px 'Public Sans',sans-serif;cursor:pointer;",
             )}
           >
-            Submit another concern
+            Send another message
           </button>
         </div>
       </div>
@@ -81,13 +88,54 @@ export default function ReportForm() {
         "flex:2 1 520px;background:#fff;border-radius:8px;padding:clamp(22px,4vw,40px);box-shadow:0 1px 2px rgba(11,74,125,.08);",
       )}
     >
+      {PROTOTYPE_MODE ? (
+        <p
+          role="status"
+          style={css(
+            "margin:0 0 22px;background:#F6FAFE;border:1px solid #CFDDEA;border-left:4px solid #0B4A7D;border-radius:6px;padding:14px 16px;font-size:15.5px;color:#2C3E52;",
+          )}
+        >
+          <strong>Online submissions are not yet available.</strong> Please visit
+          or call the office directly.
+        </p>
+      ) : null}
+
       <form
         onSubmit={(e) => {
           e.preventDefault();
+          // No backend yet: never transmit form data. Prototype mode and a
+          // filled honeypot both block the (placeholder) submission entirely.
+          if (PROTOTYPE_MODE || honeypot) return;
           setSubmitted(true);
         }}
         style={css("display:flex;flex-direction:column;gap:22px;")}
       >
+        {/* Honeypot field: positioned off-screen, hidden from assistive tech and
+            keyboard users. A real backend must reject any submission where this
+            has a value. */}
+        <div
+          aria-hidden="true"
+          style={{
+            position: "absolute",
+            left: "-9999px",
+            width: "1px",
+            height: "1px",
+            overflow: "hidden",
+          }}
+        >
+          <label>
+            Company (leave this blank)
+            <input
+              type="text"
+              name="company"
+              tabIndex={-1}
+              autoComplete="off"
+              value={honeypot}
+              onChange={(e) => setHoneypot(e.target.value)}
+            />
+          </label>
+        </div>
+
         <label style={css("display:flex;gap:12px;align-items:flex-start;cursor:pointer;")}>
           <input
             type="checkbox"
@@ -104,6 +152,9 @@ export default function ReportForm() {
           </span>
         </label>
 
+        {/* When anonymous, these fields are removed from the form entirely, so
+            they are hidden, cannot be edited, are not required, and are never
+            submitted. */}
         {!anon ? (
           <div
             style={css(
@@ -112,11 +163,23 @@ export default function ReportForm() {
           >
             <label style={labelStyle}>
               Full name
-              <input type="text" autoComplete="name" className="inp" style={inputStyle} />
+              <input
+                type="text"
+                required
+                autoComplete="name"
+                className="inp"
+                style={inputStyle}
+              />
             </label>
             <label style={labelStyle}>
               Email address
-              <input type="email" autoComplete="email" className="inp" style={inputStyle} />
+              <input
+                type="email"
+                required
+                autoComplete="email"
+                className="inp"
+                style={inputStyle}
+              />
             </label>
             <label style={labelStyle}>
               Mobile number{" "}
@@ -140,7 +203,7 @@ export default function ReportForm() {
           )}
         >
           <label style={labelStyle}>
-            Office concerned
+            Office involved
             <select required defaultValue="" className="inp" style={selectStyle}>
               <option value="">Select an office</option>
               {offices.map((o) => (
@@ -149,10 +212,10 @@ export default function ReportForm() {
             </select>
           </label>
           <label style={labelStyle}>
-            Nature of concern
+            Subject
             <select required defaultValue="" className="inp" style={selectStyle}>
-              <option value="">Select a category</option>
-              {natures.map((o) => (
+              <option value="">Select a subject</option>
+              {subjects.map((o) => (
                 <option key={o}>{o}</option>
               ))}
             </select>
@@ -160,10 +223,11 @@ export default function ReportForm() {
         </div>
 
         <label style={labelStyle}>
-          Describe your concern
+          Your message
           <span style={css("font-weight:400;font-size:15px;color:#3D5166;")}>
-            Include what happened, when, and where. Do not include personal
-            information about other people unless necessary.
+            Tell us how we can help. If you are reporting a concern, include what
+            happened, when, and where. Do not include personal information about
+            other people unless necessary.
           </span>
           <textarea
             required
@@ -201,11 +265,12 @@ export default function ReportForm() {
           <p style={css("font-size:15px;color:#2C3E52;")}>
             In accordance with the Data Privacy Act of 2012 (Republic Act No.
             10173), the City Internal Audit Services Department collects the
-            information in this form only to assess and act on your concern. It is
+            information in this form only to respond to and act on your message. It is
             stored securely, accessed only by authorized IAS personnel, kept for
             no longer than necessary, and not shared outside the City Government
             except as required by law. You may contact our Data Protection Officer
-            at dpo@butuan.gov.ph to exercise your rights as a data subject.
+            at {siteConfig.contact.dpoEmail} to exercise your rights as a data
+            subject.
           </p>
           <label style={css("display:flex;gap:12px;align-items:flex-start;cursor:pointer;font-size:16px;")}>
             <input
@@ -222,22 +287,33 @@ export default function ReportForm() {
           </label>
         </div>
 
+        {/*
+          TODO: CAPTCHA before launch.
+          Add a bot challenge here (for example, Cloudflare Turnstile) before
+          live submissions are enabled. Render the widget, then require a valid
+          verification token both in this component and when the backend
+          processes the submission. Example widget container:
+            <div className="cf-turnstile" data-sitekey="YOUR_SITE_KEY"></div>
+        */}
+
         <div style={css("display:flex;flex-wrap:wrap;gap:12px 20px;align-items:center;")}>
           <button
             type="submit"
-            disabled={!consent}
+            disabled={!consent || PROTOTYPE_MODE}
             className="hvr-btn-submit"
             style={{
               ...css(
                 "min-height:52px;padding:0 28px;border:0;border-radius:4px;background:#3F7412;color:#fff;font:700 17px 'Public Sans',sans-serif;cursor:pointer;",
               ),
-              opacity: consent ? 1 : 0.55,
+              opacity: !consent || PROTOTYPE_MODE ? 0.55 : 1,
             }}
           >
-            Submit concern
+            Send message
           </button>
           <span style={css("font-size:14px;color:#4A5D70;")}>
-            All fields are required unless marked optional.
+            {anon
+              ? "Fields marked optional can be left blank; all others are required."
+              : "Full name and email are required. Fields marked optional can be left blank."}
           </span>
         </div>
       </form>

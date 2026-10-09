@@ -2,57 +2,39 @@ import { pageMetadata } from "@/lib/seo";
 import Link from "next/link";
 import ImageSlot from "@/components/ImageSlot";
 import ReportForm from "@/components/ReportForm";
+import LastUpdated from "@/components/LastUpdated";
 import { css } from "@/lib/css";
+import { siteConfig } from "@/lib/site";
 
 export const metadata = pageMetadata({
   title: "Contact Us",
   description:
-    "Visit, call, or email the City Internal Audit Services Department at Butuan City Hall, or submit a concern about a city office through our online form.",
+    "Visit, call, or email the City Internal Audit Services Department at Butuan City Hall, or send us a message (an inquiry, request, feedback, or a concern about a city office) through our online contact form.",
   path: "/contact",
 });
+
+const c = siteConfig.contact;
 
 const details = [
   {
     k: "Address",
-    v: "3rd Floor, Butuan City Hall\nJ.P. Rosales Avenue, Doongan\nButuan City 8600, Agusan del Norte",
+    v: c.addressLines.join("\n"),
     icon: "M12 21s-7-6.2-7-11.5A7 7 0 0 1 19 9.5C19 14.8 12 21 12 21zM12 12a2.5 2.5 0 1 0 0-5 2.5 2.5 0 0 0 0 5z",
   },
   {
     k: "Phone",
-    v: "(085) 817-2345 local 214\n0917 123 4567 (Globe)",
+    v: `${c.phoneLandline}\n${c.phoneMobile}`,
     icon: "M5 4h4l2 5-2.5 1.5a11 11 0 0 0 5 5L15 13l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2",
   },
-  { k: "Email", v: "ciasd@butuan.gov.ph", icon: "M3 6h18v12H3zM3 7l9 6 9-6" },
+  { k: "Email", v: c.email, icon: "M3 6h18v12H3zM3 7l9 6 9-6" },
   {
     k: "Office hours",
-    v: "Monday to Friday, 8:00 AM – 5:00 PM\nNo noon break. Closed on holidays.",
+    v: `${c.hours}\n${c.hoursNote}`,
     icon: "M12 3a9 9 0 1 0 0 18 9 9 0 0 0 0-18zM12 7v5l3 2",
   },
 ];
 
-const agencies = [
-  {
-    name: "Office of the Ombudsman",
-    text: "For complaints of graft, corruption, or misconduct by public officials and employees.",
-    contact: "Hotline: (02) 8926-2662",
-    href: "https://www.ombudsman.gov.ph",
-    link: "Visit ombudsman.gov.ph",
-  },
-  {
-    name: "Commission on Audit",
-    text: "For concerns about the use of public funds and property that need an external audit.",
-    contact: "Citizen Desk: citizendesk@coa.gov.ph",
-    href: "https://www.coa.gov.ph",
-    link: "Visit coa.gov.ph",
-  },
-  {
-    name: "8888 Citizens' Complaint Hotline",
-    text: "For complaints about red tape, delays, or poor service in any government agency.",
-    contact: "Call or text 8888",
-    href: "https://8888.gov.ph",
-    link: "Visit 8888.gov.ph",
-  },
-];
+const agencies = siteConfig.agencies;
 
 export default function ContactPage() {
   return (
@@ -86,9 +68,9 @@ export default function ContactPage() {
             Contact Us
           </h1>
           <p style={css("font-size:clamp(17px,1.6vw,20px);max-width:740px;")}>
-            Visit, call, or write to us. To report a possible irregularity or
-            control weakness in a city office, use the Report a Concern form
-            below.
+            Visit, call, or write to us. You can also use the form below to send
+            us a message: ask a question, request information, share feedback, or
+            report a possible concern about a City Government office.
           </p>
         </div>
       </section>
@@ -140,7 +122,7 @@ export default function ContactPage() {
               ))}
             </dl>
             <a
-              href="https://www.facebook.com/"
+              href={siteConfig.social.facebookUrl}
               className="hvr-invert"
               style={css(
                 "align-self:flex-start;display:inline-flex;align-items:center;gap:10px;min-height:48px;padding:0 20px;border:2px solid #0B4A7D;border-radius:4px;color:#0B4A7D;font-weight:700;text-decoration:none;",
@@ -149,7 +131,7 @@ export default function ContactPage() {
               <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
                 <path d="M14 8h3V4h-3c-2.8 0-4.5 1.8-4.5 4.6V11H7v4h2.5v8h4v-8h3l.5-4h-3.5V8.8c0-.5.3-.8.5-.8z" />
               </svg>
-              Follow Butuan City IAS on Facebook
+              Follow {siteConfig.social.facebookLabel}
             </a>
           </div>
           <div style={css("flex:1.3 1 420px;min-height:360px;position:relative;")}>
@@ -163,7 +145,7 @@ export default function ContactPage() {
         </div>
       </section>
 
-      {/* Report a Concern */}
+      {/* Contact form (also used to report a concern) */}
       <section
         id="report"
         aria-labelledby="report-title"
@@ -176,10 +158,11 @@ export default function ContactPage() {
         >
           <div style={css("flex:1 1 300px;max-width:400px;display:flex;flex-direction:column;gap:18px;")}>
             <h2 id="report-title" style={css("font-size:clamp(25px,3vw,32px);")}>
-              Report a Concern
+              Send us a message
             </h2>
             <p>
-              Use this form to tell us about a possible weakness in controls,
+              Use this form for any inquiry, request, or feedback for the
+              department, or to report a possible weakness in controls,
               inefficiency, or irregularity in a City Government office or process.
             </p>
             <div style={css("display:flex;flex-direction:column;gap:10px;")}>
@@ -190,8 +173,11 @@ export default function ContactPage() {
                 )}
               >
                 <li>You receive a reference number right away.</li>
-                <li>We assess your concern within 7 working days.</li>
-                <li>If you gave contact details, we tell you whether it will be reviewed.</li>
+                <li>We review your message and route it to the right team.</li>
+                <li>
+                  If you gave contact details, we get back to you. Concerns are
+                  assessed within 7 working days.
+                </li>
               </ol>
             </div>
             <div
@@ -238,10 +224,10 @@ export default function ContactPage() {
                 )}
               >
                 <h3 style={css("font-size:19px;")}>{a.name}</h3>
-                <p style={css("font-size:16px;color:#2C3E52;")}>{a.text}</p>
+                <p style={css("font-size:16px;color:#2C3E52;")}>{a.description}</p>
                 <span style={css("font-weight:700;color:#0B4A7D;")}>{a.contact}</span>
                 <a href={a.href} style={css("margin-top:auto;font-weight:700;")}>
-                  {a.link}
+                  {a.linkLabel}
                 </a>
               </div>
             ))}
@@ -265,17 +251,18 @@ export default function ContactPage() {
               Satisfaction Measurement survey. It takes about three minutes.
             </p>
           </div>
-          <a
-            href="#"
+          <Link
+            href="/feedback"
             className="hvr-btn-light"
             style={css(
               "display:inline-flex;align-items:center;min-height:48px;padding:0 22px;background:#fff;color:#0B4A7D;font-weight:700;text-decoration:none;border-radius:4px;border-bottom:4px solid #7DC12B;",
             )}
           >
             Give feedback
-          </a>
+          </Link>
         </div>
       </section>
+      <LastUpdated path="/contact" />
     </main>
   );
 }

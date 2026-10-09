@@ -2,6 +2,7 @@ import { pageMetadata } from "@/lib/seo";
 import Link from "next/link";
 import ImageSlot from "@/components/ImageSlot";
 import NewsFeed from "@/components/NewsFeed";
+import LastUpdated from "@/components/LastUpdated";
 import { css } from "@/lib/css";
 
 export const metadata = pageMetadata({
@@ -115,6 +116,7 @@ export default function NewsPage() {
           </ul>
         </div>
       </section>
+      <LastUpdated path="/news" />
     </main>
   );
 }
